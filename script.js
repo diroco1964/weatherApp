@@ -27,7 +27,27 @@ function fetchDataFromApi() {
 	let insertedCity = cityInput.value;
 	fetch(`${apiData.url}${insertedCity}&&appid=${apiData.key}&lang=es`)
 		.then((res) => res.json())
-		.then((data) => addDataToDom(data));
+		.then((data) => {
+            if (data.cod === "404") {
+                // Si la API devuelve un código 404, la ciudad no se encuentra
+                cityName.innerHTML = "Ciudad no encontrada";
+                cityTemp.innerHTML = "";
+                cityCond.innerHTML = "";
+                cityHumidity.innerHTML = "";
+                todayDate.innerHTML = "";
+            } else {
+                // Si los datos son válidos, se muestran en la página
+                addDataToDom(data);
+            }
+        })
+        .catch((error) => {
+            // En caso de error en la solicitud
+            cityName.innerHTML = "Error al obtener los datos";
+            cityTemp.innerHTML = "";
+            cityCond.innerHTML = "";
+            cityHumidity.innerHTML = "";
+            todayDate.innerHTML = "";
+        });
 }
 
 let cityName = document.querySelector(".city-name");

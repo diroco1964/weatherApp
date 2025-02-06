@@ -20,7 +20,7 @@ let apiData = {
 	url: "https://api.openweathermap.org/data/2.5/weather?q=",
 	key: "124b92a8dd9ec01ffb0dbf64bc44af3c",
 };
-cityInput.value = "new york";
+cityInput.value = "Buenos Aires";
 fetchDataFromApi();
 cityInput.value = "";
 function fetchDataFromApi() {
@@ -39,11 +39,11 @@ function addDataToDom(data) {
 	cityName.innerHTML = `${data.name}, ${data.sys.country}`;
 	cityTemp.innerHTML = `${Math.round(data.main.temp - 273.15)}°c`;
 	cityCond.innerHTML = data.weather[0].description;
-	cityHumidity.innerHTML = `humidity: ${data.main.humidity}%`;
+	cityHumidity.innerHTML = `humedad: ${data.main.humidity}%`;
 	todayDate.innerHTML = getDate();
 }
 
-let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 function getDate() {
 	let newTime = new Date();
 	let month = months[newTime.getMonth()];

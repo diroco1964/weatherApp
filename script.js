@@ -25,7 +25,7 @@ fetchDataFromApi();
 cityInput.value = "";
 function fetchDataFromApi() {
 	let insertedCity = cityInput.value;
-	fetch(`${apiData.url}${insertedCity}&&appid=${apiData.key}`)
+	fetch(`${apiData.url}${insertedCity}&&appid=${apiData.key}&lang=es`)
 		.then((res) => res.json())
 		.then((data) => addDataToDom(data));
 }
